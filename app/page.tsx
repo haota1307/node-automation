@@ -18,11 +18,17 @@ const Page = () => {
     })
   );
 
+  const testAI = useMutation(trpc.testAI.mutationOptions());
+
   return (
     <div>
       {data?.map((workflow) => (
         <div key={workflow.id}>{workflow.name}</div>
       ))}
+      <Button disabled={testAI.isPending} onClick={() => testAI.mutate()}>
+        {" "}
+        Test AI
+      </Button>
       <Button onClick={() => creat.mutate()}> Create workflows</Button>
     </div>
   );
